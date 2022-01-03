@@ -57,12 +57,15 @@ export class App extends Generator {
 
   public async writing() {
 
-    const readmeTpl = _.template(this.fs.read(this.templatePath('README.md'), {}));
-    const readme = readmeTpl({
-      name: this.options.name
-    });
+    var readme = this.options.readme;
+
+    if (readme === undefined || readme === '') {
+      const readmeTpl = _.template(this.fs.read(this.templatePath('README.md'), {}));
+      readme = readmeTpl({
+        name: this.options.name
+      });
+    }
 
     this.fs.write(this.destinationPath('README.md'), readme);
-
   }
 }
