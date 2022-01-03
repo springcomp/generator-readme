@@ -50,7 +50,9 @@ export class App extends Generator {
 
   public async default() {
 
-    this.composeWith(require.resolve('generator-license/app'), {});
+    if (this.options.license) {
+      this.composeWith(require.resolve('generator-license/app'), {});
+    }
   }
 
   public async writing() {
