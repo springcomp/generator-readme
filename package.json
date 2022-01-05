@@ -1,6 +1,6 @@
 {
   "name": "@springcomp/generator-readme",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "description": "Yeoman generator that creates a README.md file",
   "author": {
     "name": "Springcomp",
