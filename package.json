@@ -29,7 +29,6 @@
   "dependencies": {
     "deep-extend": "^0.6.0",
     "generator-license": "^5.5.0",
-    "generator-node": "^2.8.0",
     "inquirer": "^8.2.0",
     "inquirer-npm-name": "^4.0.0",
     "mkdirp": "^1.0.4",
