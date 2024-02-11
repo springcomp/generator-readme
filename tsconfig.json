@@ -5,6 +5,7 @@
     "module": "commonjs",
     "moduleResolution": "node",
     "noImplicitAny": true,
+    "outDir": "dist/generators",
     "skipLibCheck": true,
     "sourceMap": true,
     "strictNullChecks": true,

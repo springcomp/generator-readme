@@ -15,7 +15,7 @@ export class App extends Generator {
   public constructor(args: string[], opts: AppOptions) {
     super(args, opts);
 
-    this.option('license', { type: Boolean, description: "Include license config", default: true });
+    this.option('license', { type: Boolean, description: "Prompts for a license", default: true });
     this.option('name', { type: String, description: "Project name", });
     this.option('readme', { type: String, description: "Content to insert in the README.md file", });
   }

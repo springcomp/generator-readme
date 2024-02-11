@@ -18,7 +18,7 @@
     "yeoman-generator"
   ],
   "scripts": {
-    "build": "npx tsc --project . --outDir ./dist/generators/",
+    "build": "npx tsc",
     "clean": "shx rm -rf ./dist/",
     "install": "npm run build && npm run _app_template_files && npm run _boilerplate-files && npm run _clear-package-json",
     "_boilerplate-files": "shx cp LICENSE ./dist/ && shx cp README.md ./dist/",
