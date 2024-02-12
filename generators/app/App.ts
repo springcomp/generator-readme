@@ -1,15 +1,13 @@
-import * as _ from "lodash";
-import * as Generator from "yeoman-generator";
-const extend = require('deep-extend');
-import validatePackageName = require('validate-npm-package-name');
+import _ from "lodash";
+import Generator from "yeoman-generator";
+// import validate from 'validate-npm-package-name';
 
-import { AppAnswers } from "./AppAnswers";
-import { AppOptions } from "./AppOptions";
-import { Utils } from "../utils/Utils";
+import { AppAnswers } from "./AppAnswers.js";
+import { AppOptions, AppOptionsType } from "./AppOptions.js";
+import { Utils } from "../utils/Utils.js";
 
-export class App extends Generator {
+export class App extends Generator<AppOptionsType> {
 
-  options: AppOptions = new AppOptions();
   answers: AppAnswers = new AppAnswers();
 
   public constructor(args: string[], opts: AppOptions) {
@@ -22,27 +20,30 @@ export class App extends Generator {
 
   public initializing() {
 
-    if (this.options.name) {
-      const packageNameValidity = validatePackageName(this.options.name);
-      if (!packageNameValidity.validForNewPackages) {
-        this.emit(
-          'error',
-          new Error(
-            _.get(packageNameValidity, 'errors.0') ||
-            'The name option is not a valid npm package name.'
-          ));
-      }
-    }
+    //if (this.options.name) {
+    //  const packageNameValidity = validate(this.options.name);
+    //  if (!packageNameValidity.validForNewPackages) {
+    //    this.env.emit(
+    //      'error',
+    //      new Error(
+    //        _.get(packageNameValidity, 'errors.0') ||
+    //        'The name option is not a valid npm package name.'
+    //      ));
+    //  }
+    //}
   }
 
   public async prompting() {
 
     if (this.options.name === undefined || this.options.name === '') {
       const result = await Utils.askForProjectName();
+      console.log(`prompting: asked for name ${result.name}`);
+      console.log(result);
       this.options.name = result.name;
     }
 
     const projectName = this.options.name;
+    console.log('makeModuleName');
     const moduleName = Utils.makeModuleName(projectName, '');
 
     Object.assign(this.options, moduleName);
@@ -50,9 +51,10 @@ export class App extends Generator {
 
   public async default() {
 
-    if (this.options.license) {
-      this.composeWith(require.resolve('generator-license/app'), {});
-    }
+    console.log(this.options);
+    //if (this.options.license) {
+    //  this.composeWith(require.resolve('generator-license/app'), {});
+    //}
   }
 
   public async writing() {
@@ -60,7 +62,9 @@ export class App extends Generator {
     var readme = this.options.readme;
 
     if (readme === undefined || readme === '') {
-      const readmeTpl = _.template(this.fs.read(this.templatePath('README.md'), {}));
+      const templatePath = this.templatePath('README.md');
+      const templateContent = this.fs.read(templatePath, {}) || undefined;
+      const readmeTpl = _.template(templateContent);
       readme = readmeTpl({
         name: this.options.name
       });

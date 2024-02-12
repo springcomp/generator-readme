@@ -1,8 +1,9 @@
 {
   "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
     "lib": ["es2017"],
-    "module": "commonjs",
+    "module": "es2020",
     "moduleResolution": "node",
     "noImplicitAny": true,
     "outDir": "dist/generators",
@@ -10,11 +11,15 @@
     "sourceMap": true,
     "strictNullChecks": true,
     "target": "es2017",
+    "typeRoots": ["node_modules/@types"]
   },
+  "include": [
+    "generators/**/*.ts"
+  ],
   "exclude": [
     "dist",
     "generators/app/templates",
     "node_modules",
-    "**/*.spec.ts",
+    "**/*.spec.ts"
   ]
 }

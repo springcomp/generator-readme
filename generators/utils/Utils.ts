@@ -1,8 +1,8 @@
 import * as _ from "lodash";
 
-import askName = require("inquirer-npm-name");
-import inquirer = require("inquirer");
-import path = require("path");
+import askName from "inquirer-npm-name";
+import inquirer from "inquirer";
+import * as path from "path";
 
 export class ModuleName {
   scopeName: string;
