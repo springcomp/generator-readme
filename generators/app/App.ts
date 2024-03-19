@@ -55,13 +55,11 @@ export class App extends Generator<AppOptions> {
   public async default() {
 
     if (this.options.license) {
-      console.log(import.meta.url);
       const path = resolve('generator-license', import.meta.url);
-      console.log(path);
       const licenseOpts: LicenseOptions = {
         publish: false,
       };
-      this.composeWith<GeneratorLicense>('license', [], licenseOpts);
+      await this.composeWith<GeneratorLicense>(path, licenseOpts);
     }
   }
 
