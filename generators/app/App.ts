@@ -5,6 +5,7 @@ import validate from 'validate-npm-package-name';
 import { AppAnswers } from "./AppAnswers.js";
 import { AppOptions } from "./AppOptions.js";
 import { Utils } from "../utils/Utils.js";
+import { fileURLToPath } from 'node:url';
 
 import GeneratorLicense, { LicenseOptions } from 'generator-license';
 
@@ -56,10 +57,12 @@ export class App extends Generator<AppOptions> {
 
     if (this.options.license) {
       const path = resolve('generator-license', import.meta.url);
+      const localPath = fileURLToPath(path);
+      console.log(localPath);
       const licenseOpts: LicenseOptions = {
         publish: false,
       };
-      await this.composeWith<GeneratorLicense>(path, licenseOpts);
+      await this.composeWith<GeneratorLicense>(localPath, licenseOpts);
     }
   }
 

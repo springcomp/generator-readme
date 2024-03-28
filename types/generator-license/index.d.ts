@@ -1,6 +1,6 @@
-import Generator, { GeneratorOptions } from 'yeoman-generator';
-
 declare module 'generator-license' {
+	import Generator, { GeneratorOptions } from 'yeoman-generator';
+
 	export const licences: string[];
 
 	export type LicenseOptions = Partial<GeneratorOptions> & {
